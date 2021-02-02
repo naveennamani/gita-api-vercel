@@ -7,6 +7,7 @@ from server.model import GitaVerse
 from server.model import Language
 from server.utils import chapter_wise_verse_counts
 from server.utils import get_ch_verse_no
+from server.utils import get_odia_verse
 from server.utils import get_telugu_verse
 
 router = APIRouter()
@@ -43,6 +44,8 @@ def get_verse_serial(language: Language, verse_no_serial: int):
 def serve_verse(language: Language, chapter_no: int, verse_no: int):
     if language == Language.telugu:
         return get_telugu_verse(chapter_no, verse_no)
+    elif language == Language.odia:
+        return get_odia_verse(chapter_no, verse_no)
     else:
         return {
             "error": "Language not implemented",

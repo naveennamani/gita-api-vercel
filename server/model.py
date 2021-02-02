@@ -25,6 +25,7 @@ class GitaVerse(BaseModel):
 
 class Language(str, Enum):
     telugu = "tel"
+    odia = "odi"
     english = "eng"
     spanish = "esp"
 
