@@ -69,11 +69,13 @@ def get_holy_bhagavad_gita_org_verse(chapter_no, verse_no, lang1, lang2):
     }
 
 
-def get_telugu_verse(chaper_no, verse_no):
+def get_telugu_verse(chapter_no, verse_no):
     # return get_holy_bhagavad_gita_org_verse(chaper_no, verse_no, "te", "telugu")
-    with open(f"verses_telugu_json/{chaper_no}.json") as fh:
+    with open(f"verses_telugu_json/{chapter_no}.json") as fh:
         return json.load(fh)[str(verse_no)]
 
 
 def get_odia_verse(chapter_no, verse_no):
-    return get_holy_bhagavad_gita_org_verse(chapter_no, verse_no, "or", "odia")
+    # return get_holy_bhagavad_gita_org_verse(chapter_no, verse_no, "or", "odia")
+    with open(f"verses_odia_json/{chapter_no}.json") as fh:
+        return json.load(fh)[str(verse_no)]
