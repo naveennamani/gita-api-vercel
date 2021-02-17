@@ -16,13 +16,12 @@ router = APIRouter()
 @router.get("/{language}/verse/{chapter_no}/{verse_no}",
             response_model = Union[GitaVerse, APIError])
 def get_verse(language: Language, chapter_no: int, verse_no: int):
-    print(globals())
     if chapter_no > 18 or chapter_no <= 0:
         return {
             "error": "Invalid chapter no",
             "message": "Please ensure chapter no to be <= 18"
         }
-    if verse_no > chapter_wise_verse_counts[chapter_no - 1]:
+    if not 0 < verse_no <= chapter_wise_verse_counts[chapter_no - 1]:
         return {
             "error": "Invalid verse no",
             "message": f"The chapter {chapter_no} has only {chapter_wise_verse_counts[chapter_no - 1]}"
@@ -33,7 +32,7 @@ def get_verse(language: Language, chapter_no: int, verse_no: int):
 
 @router.get("/{language}/verse/{verse_no_serial}", response_model = Union[GitaVerse, APIError])
 def get_verse_serial(language: Language, verse_no_serial: int):
-    if verse_no_serial > 701:
+    if not 0 < verse_no_serial <= 701:
         return {
             "error": "Invalid verse no",
             "message": "The BG has only 700 verses"
